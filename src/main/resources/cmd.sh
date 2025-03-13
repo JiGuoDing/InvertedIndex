@@ -1,0 +1,1 @@
+hadoop jar InvertedIndex-1.0-SNAPSHOT-jar-with-dependencies.jar nju.jgd.invertedIndex.InvertedIndexDriver /user/normal4/input /user/normal4/output
