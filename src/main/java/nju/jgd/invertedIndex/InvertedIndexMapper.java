@@ -23,8 +23,9 @@ public class InvertedIndexMapper extends Mapper<LongWritable, Text, Text, Text> 
         FileSplit fileSplit = (FileSplit) context.getInputSplit();
         // 拿到file文档的名字
         String fileName = fileSplit.getPath().getName();
-        // key写成<单词：文档, 1>的形式
+        // key写成<单词：文档：    1>的形式
         for (String field: fields) {
+            field = '[' + field + ']';
             KeyInfo.set(field + ":" + fileName);
             context.write(KeyInfo, one);
         }
