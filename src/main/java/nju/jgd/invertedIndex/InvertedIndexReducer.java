@@ -13,11 +13,11 @@ public class InvertedIndexReducer extends Reducer<Text, Text, Text, Text> {
         // 最终输出的形如 "[word] \tab avg_freq, 第一部-xxx:3......" 的字符串
         String freq_list = new String();
         // 出现该单词的文档数
-        Integer file_cnt = 0;
+        Integer file_cnt = new Integer(0);
         // 该单词在文档中的平均出频数
         float avg_freq = 0;
         // 该单词在所有文档中出现的总频数
-        Integer total_freq = 0;
+        Integer total_freq = new Integer(0);
         // 该单词的 文档:次数 信息
         String fileList = new String();
         // value是一个字符串，形如"第一部-xxx:3"
