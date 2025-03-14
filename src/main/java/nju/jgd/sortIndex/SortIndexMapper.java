@@ -6,13 +6,15 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SortIndexMapper extends Mapper<LongWritable, Text, FloatWritable, Text> {
 
-    private FloatWritable avg_freq = new FloatWritable();
     private Text word_freq_info = new Text();
+    private FloatWritable avg_freq = new FloatWritable();
+    // private static final Logger logger = Logger.getLogger(SortIndexMapper.class.getName());
     @Override
     protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, FloatWritable, Text>.Context context) throws IOException, InterruptedException {
         /*
@@ -25,12 +27,13 @@ public class SortIndexMapper extends Mapper<LongWritable, Text, FloatWritable, T
           (\d+\.\d+)：匹配一个或多个数字，后跟一个点.，再跟一个或多个数字，并捕获到分组中；
           ,：匹配逗号作为结束符号。
          */
+        // logger.setLevel(java.util.logging.Level.INFO);
         Pattern pattern = Pattern.compile("\\s*(\\d+\\.\\d+),");
         Matcher matcher = pattern.matcher(value.toString());
-        if(matcher.find()){
+        if (matcher.find()) {
             // 提取第一个捕获组，并为输出键设置值
             try {
-                avg_freq.set(Float.parseFloat((matcher.group(1))));
+                avg_freq.set(Float.parseFloat(matcher.group(1)));
             } catch (NumberFormatException e) {
                 System.err.println("Invalid avg_freq: " + matcher.group(1));
             }
@@ -38,7 +41,6 @@ public class SortIndexMapper extends Mapper<LongWritable, Text, FloatWritable, T
         /*
           使用正则表达式提取出[word]和单词文档频数信息 <(\\[.*?\\])|([^,]+:\\d+)>
           pattern = Pattern.compile("(\\[.*?\\])|([^,]+:\\d+)");
-          matcher = pattern.matcher(value.toString());
         */
 
         String[] split = value.toString().split("[\t,]");
