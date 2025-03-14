@@ -64,7 +64,7 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <finalName>InvertedIndex</finalName>
+                    <finalName>Inverted_Sort_Index</finalName>
                 </configuration>
                 <executions>
                     <execution>
