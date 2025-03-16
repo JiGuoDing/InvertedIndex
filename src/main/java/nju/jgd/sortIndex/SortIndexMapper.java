@@ -19,8 +19,8 @@ public class SortIndexMapper extends Mapper<LongWritable, Text, FloatWritable, T
     protected void map(LongWritable key, Text value, Mapper<LongWritable, Text, FloatWritable, Text>.Context context) throws IOException, InterruptedException {
         /*
           按平均词频对单词进行降序排列
-          前一个MR的输出形如 "[word] \tab avg_freq, 第一部-xxx:3......"
-          输入的键是 "<[word]>"，值是"avg_freq, 第一部-xxx:3......>"
+          前一个MR的输出形如 "[word] \tab avg_freq, 第一部-xxx:3;......"
+          输入的键是 "<[word]>"，值是"avg_freq, 第一部-xxx:3;......>"
         /*
           使用正则表达式提取出avg_freq <\\s*(\d+\.\d+),>
           \\s*：匹配任意数量的空白字符；
