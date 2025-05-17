@@ -9,7 +9,7 @@ import org.apache.hadoop.util.StringUtils;
 import java.io.IOException;
 
 public class InvertedIndexMapper extends Mapper<LongWritable, Text, Text, Text> {
-    private static Text KeyInfo = new Text();
+    private static final Text KeyInfo = new Text();
     // private static final Text ValueInfo = new Text("1");
     private static final Text one = new Text("1");
 
