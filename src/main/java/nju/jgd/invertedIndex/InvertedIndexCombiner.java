@@ -6,7 +6,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 
 public class InvertedIndexCombiner extends Reducer<Text, Text, Text, Text> {
-    private static Text info = new Text();
+    private static final Text info = new Text();
 
     @Override
     protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
